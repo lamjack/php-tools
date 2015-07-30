@@ -1,0 +1,17 @@
+{
+    "name": "jacklam/php-tools",
+    "description": "PHP useful tools library.",
+    "license": "MIT",
+    "version": "1.0-dev",
+    "type": "library",
+    "authors": [
+        {
+            "name": "JackLam",
+            "email": "linjue@wilead.com",
+            "homepage": "http://blog.wilead.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4"
+    }
+}

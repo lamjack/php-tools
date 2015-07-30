@@ -1,0 +1,5 @@
+# PHPStorm
+.idea/
+
+# Managed by Composer
+/vendor/
