@@ -1,5 +1,5 @@
 {
-    "name": "jacklam/php-tools",
+    "name": "wiz/php-tools",
     "description": "PHP useful tools library.",
     "license": "MIT",
     "version": "1.0-dev",
@@ -9,6 +9,11 @@
             "name": "JackLam",
             "email": "linjue@wilead.com",
             "homepage": "http://blog.wilead.com"
+        },
+        {
+            "name": "WIZ",
+            "email": "it@wizmacau.com",
+            "homepage": "http://wizmacau.com"
         }
     ],
     "require": {
