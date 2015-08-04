@@ -113,7 +113,7 @@ class Curl
      */
     protected function request($url, $method = self::GET, $params = array(), $options = array())
     {
-        if (in_array($method, array(self::GET, self::DELETE))) {
+        if (in_array($method, array(self::GET, self::DELETE)) && count($params)) {
             $url .= (stripos($url, '?') ? '&' : '?') . http_build_query($params);
             $params = array();
         }
@@ -137,8 +137,10 @@ class Curl
         } elseif (isset($options['json'])) {
             $options['headers'][] = 'content-type:application/json';
             curl_setopt($this->curl, CURLOPT_POSTFIELDS, Json::encode($params));
-        } else {
+        } elseif (in_array($method, array(self::POST))) {
             curl_setopt($this->curl, CURLOPT_POSTFIELDS, Json::encode($params));
+        } else {
+
         }
 
         // Check for custom headers
@@ -150,7 +152,6 @@ class Curl
             curl_setopt($this->curl, CURLOPT_USERPWD, $options['auth']['username'] . ':' . $options['auth']['password']);
 
         $response = $this->doCurl();
-
         // Separate headers and body
         $headerSize = $response['curl_info']['header_size'];
         $header = substr($response['response'], 0, $headerSize);
@@ -162,6 +163,8 @@ class Curl
             'headers' => $this->splitHeaders($header),
             'data' => $body,
         );
+        if ($response['response'] === false)
+            $results['curl_error'] = curl_error($this->curl);
         return $results;
     }
 
