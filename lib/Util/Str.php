@@ -46,6 +46,25 @@ class Str
     }
 
     /**
+     * 产生随机字符串
+     *
+     * @param $length
+     *
+     * @return string
+     */
+    static public function randomStr($length)
+    {
+        $str = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $strlen = 62;
+        while ($length > $strlen) {
+            $str .= $str;
+            $strlen += 60;
+        }
+        $str = str_shuffle($str);
+        return substr($str, 0, $length);
+    }
+
+    /**
      * 获取随机密码
      *
      * @param int $length
