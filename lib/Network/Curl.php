@@ -138,7 +138,7 @@ class Curl
             $options['headers'][] = 'content-type:application/json';
             curl_setopt($this->curl, CURLOPT_POSTFIELDS, Json::encode($params));
         } elseif (in_array($method, array(self::POST))) {
-            curl_setopt($this->curl, CURLOPT_POSTFIELDS, Json::encode($params));
+            curl_setopt($this->curl, CURLOPT_POSTFIELDS, http_build_query($params));
         } else {
 
         }
