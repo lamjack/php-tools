@@ -127,6 +127,9 @@ class Curl
         curl_setopt($this->curl, CURLOPT_SSL_VERIFYHOST, false);
         curl_setopt($this->curl, CURLOPT_SSL_VERIFYPEER, false);
 
+        curl_setopt($this->curl, CURLOPT_CONNECTTIMEOUT, 5);
+        curl_setopt($this->curl, CURLOPT_TIMEOUT, 30);
+
         // File Upload
         if (isset($options['files']) && count($options['files']) > 0) {
             foreach ($options['files'] as $index => $file) {
