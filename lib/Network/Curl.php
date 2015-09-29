@@ -137,6 +137,9 @@ class Curl
             }
             version_compare(PHP_VERSION, '5.5', '<') || curl_setopt($this->curl, CURLOPT_SAFE_UPLOAD, false);
             curl_setopt($this->curl, CURLOPT_POSTFIELDS, $params);
+        } elseif (isset($options['xml'])) {
+            $options['headers'][] = 'content-type:text/xml';
+            curl_setopt($this->curl, CURLOPT_POSTFIELDS, $params['xml']);
         } elseif (isset($options['json'])) {
             $options['headers'][] = 'content-type:application/json';
             curl_setopt($this->curl, CURLOPT_POSTFIELDS, Json::encode($params));
