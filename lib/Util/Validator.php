@@ -25,4 +25,9 @@ class Validator
     {
         return preg_match('/^1[3458][0-9]{9}$/', $mobile) > 0;
     }
+
+    static public function validEnglishString($string)
+    {
+        return preg_match("/^[A-Za-z]+$/", $string) > 0;
+    }
 }
