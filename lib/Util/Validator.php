@@ -62,7 +62,7 @@ class Validator
     /**
      * 邮箱地址格式验证
      *
-     * @param $email
+     * @param string $email
      * @return bool
      */
     static public function validEmail($email)
