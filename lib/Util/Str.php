@@ -65,6 +65,26 @@ class Str
     }
 
     /**
+     * 产生唯一字符串
+     *
+     * @param string $prefix
+     * @param int $length
+     *
+     * @return string
+     */
+    static public function generateUniqidString($prefix = '', $length = 20)
+    {
+        $key = '';
+        $keys = array_merge(range(0, 9), range('a', 'z'));
+
+        for ($i = 0; $i < $length; $i++) {
+            $key .= $keys[array_rand($keys)];
+        }
+
+        return uniqid($prefix) . $key;
+    }
+
+    /**
      * 检查文本是否utf8编码
      *
      * @param $string
