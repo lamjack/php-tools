@@ -37,8 +37,8 @@ class Curl
      * Make a HTTP GET request
      *
      * @param string $url
-     * @param array $params
-     * @param array $options
+     * @param array  $params
+     * @param array  $options
      *
      * @return array
      */
@@ -51,8 +51,8 @@ class Curl
      * Make a HTTP POST request
      *
      * @param string $url
-     * @param array $params
-     * @param array $options
+     * @param array  $params
+     * @param array  $options
      *
      * @return array
      */
@@ -65,8 +65,8 @@ class Curl
      * Make a HTTP PUT request
      *
      * @param string $url
-     * @param array $params
-     * @param array $options
+     * @param array  $params
+     * @param array  $options
      *
      * @return array
      */
@@ -79,8 +79,8 @@ class Curl
      * Make a HTTP PATCH request
      *
      * @param string $url
-     * @param array $params
-     * @param array $options
+     * @param array  $params
+     * @param array  $options
      *
      * @return array
      */
@@ -93,8 +93,8 @@ class Curl
      * Make a HTTP DELETE request
      *
      * @param string $url
-     * @param array $params
-     * @param array $options
+     * @param array  $params
+     * @param array  $options
      *
      * @return array
      */
@@ -106,8 +106,8 @@ class Curl
     /**
      * @param string $url
      * @param string $method
-     * @param array $params
-     * @param array $options
+     * @param array  $params
+     * @param array  $options
      *
      * @return array
      */
