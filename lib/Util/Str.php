@@ -15,7 +15,7 @@ class Str
     /**
      * 駝峰式字符串轉下劃線式
      *
-     * @param string $str
+     * @param string  $str
      * @param boolean $replace
      *
      * @return string
@@ -31,7 +31,7 @@ class Str
      * 下劃線式字符串轉駝峰式
      *
      * @param string $str
-     * @param bool $capitalise_first_char 首字母是否大寫
+     * @param bool   $capitalise_first_char 首字母是否大寫
      *
      * @return mixed
      */
@@ -68,7 +68,7 @@ class Str
      * 产生唯一字符串
      *
      * @param string $prefix
-     * @param int $length
+     * @param int    $length
      *
      * @return string
      */
@@ -134,5 +134,39 @@ class Str
             $length = 32;
 
         return substr(md5(microtime()), 0, $length);
+    }
+
+    /**
+     * 把字节数更好的显示
+     *
+     * @param int $bytes
+     * @param int $precision
+     *
+     * @return string
+     */
+    static public function bytesToSize($bytes, $precision = 2)
+    {
+        $kilobyte = 1024;
+        $megabyte = $kilobyte * 1024;
+        $gigabyte = $megabyte * 1024;
+        $terabyte = $gigabyte * 1024;
+
+        if (($bytes >= 0) && ($bytes < $kilobyte)) {
+            return $bytes . ' B';
+
+        } elseif (($bytes >= $kilobyte) && ($bytes < $megabyte)) {
+            return round($bytes / $kilobyte, $precision) . ' KB';
+
+        } elseif (($bytes >= $megabyte) && ($bytes < $gigabyte)) {
+            return round($bytes / $megabyte, $precision) . ' MB';
+
+        } elseif (($bytes >= $gigabyte) && ($bytes < $terabyte)) {
+            return round($bytes / $gigabyte, $precision) . ' GB';
+
+        } elseif ($bytes >= $terabyte) {
+            return round($bytes / $terabyte, $precision) . ' TB';
+        } else {
+            return $bytes . ' B';
+        }
     }
 }
