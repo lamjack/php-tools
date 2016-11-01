@@ -72,7 +72,7 @@ abstract class Date
         }
 
         if ($delta < 45 * self::MINUTE) {
-            return ['%num% minutes ago', $delta / self::MINUTE];
+            return ['%num% minutes ago', (int)($delta / self::MINUTE)];
         }
 
         if ($delta < 90 * self::MINUTE) {
@@ -80,7 +80,7 @@ abstract class Date
         }
 
         if ($delta < 24 * self::HOUR) {
-            return ['%num% hours ago', $delta / self::HOUR];
+            return ['%num% hours ago', (int)($delta / self::HOUR)];
         }
 
         if ($delta < 48 * self::HOUR) {
@@ -88,15 +88,15 @@ abstract class Date
         }
 
         if ($delta < self::MONTH) {
-            return ['%num% days ago', $delta / self::DAY];
+            return ['%num% days ago', (int)($delta / self::DAY)];
         }
 
         if ($delta < self::YEAR) {
-            $months = $delta / self::MONTH;
+            $months = (int)($delta / self::MONTH);
             return $months <= 1 ? 'one month ago' : ['%num% months ago', [$months]];
         }
 
-        $years = $delta / self::YEAR;
+        $years = (int)($delta / self::YEAR);
         return $years <= 1 ? 'one year ago' : ['%num% years ago', [$years]];
     }
 }
