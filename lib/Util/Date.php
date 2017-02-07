@@ -93,10 +93,10 @@ abstract class Date
 
         if ($delta < self::YEAR) {
             $months = (int)($delta / self::MONTH);
-            return $months <= 1 ? 'one month ago' : ['%num% months ago', [$months]];
+            return $months <= 1 ? 'one month ago' : ['%num% months ago', $months];
         }
 
         $years = (int)($delta / self::YEAR);
-        return $years <= 1 ? 'one year ago' : ['%num% years ago', [$years]];
+        return $years <= 1 ? 'one year ago' : ['%num% years ago', $years];
     }
 }
