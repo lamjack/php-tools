@@ -15,7 +15,7 @@ class Str
     /**
      * 駝峰式字符串轉下劃線式
      *
-     * @param string  $str
+     * @param string $str
      * @param boolean $replace
      *
      * @return string
@@ -31,7 +31,7 @@ class Str
      * 下劃線式字符串轉駝峰式
      *
      * @param string $str
-     * @param bool   $capitalise_first_char 首字母是否大寫
+     * @param bool $capitalise_first_char 首字母是否大寫
      *
      * @return mixed
      */
@@ -68,7 +68,7 @@ class Str
      * 产生唯一字符串
      *
      * @param string $prefix
-     * @param int    $length
+     * @param int $length
      *
      * @return string
      */
@@ -168,5 +168,28 @@ class Str
         } else {
             return $bytes . ' B';
         }
+    }
+
+    /**
+     * 从字符串中提取JSON数据
+     *
+     * @param string $string
+     * @return array
+     */
+    static public function extractJsonFromString($string)
+    {
+        $pattern = '
+/
+\{              # { character
+    (?:         # non-capturing group
+        [^{}]   # anything that is not a { or }
+        |       # OR
+        (?R)    # recurses the entire pattern
+    )*          # previous group zero or more times
+\}              # } character
+/x
+';
+        preg_match_all($pattern, $string, $matches);
+        return $matches[0];
     }
 }
