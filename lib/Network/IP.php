@@ -30,9 +30,18 @@ abstract class IP
     static public function cidrToRange($cidr)
     {
         $range = [];
-        $cidr = explode('/', $cidr);
-        $range[0] = long2ip((ip2long($cidr[0])) & ((-1 << (32 - (int)$cidr[1]))));
-        $range[1] = long2ip((ip2long($range[0])) + pow(2, (32 - (int)$cidr[1])) - 1);
-        return $range;
+        $split = explode('/', $cidr);
+
+        if (count($split) > 1 && !empty($split[0]) && is_scalar($split[1]) && filter_var($split[0], FILTER_VALIDATE_IP, FILTER_FLAG_IPV4)) {
+            $rangeStart = ip2long($split[0]) & ((-1 << (32 - (int)$split[1])));
+            $rangeEnd = ip2long($split[0]) + pow(2, (32 - (int)$split[1])) - 1;
+
+            for ($i = $rangeStart; $i <= $rangeEnd; $i++) {
+                $range[] = long2ip($i);
+            }
+            return $range;
+        } else {
+            return $cidr;
+        }
     }
 }
