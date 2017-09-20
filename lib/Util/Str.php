@@ -194,6 +194,31 @@ class Str
     }
 
     /**
+     * 解析nginx_status輸出數據
+     *
+     * @param string $str
+     *
+     * @return array|null
+     */
+    static public function resolveNginxStatus($str)
+    {
+        preg_match_all('/\d+/is', $str, $matched);
+        if (count($matched[0]) === 7) {
+            return [
+                'connections' => (int)$matched[0][0],
+                'accepts' => (int)$matched[0][1],
+                'handled' => (int)$matched[0][2],
+                'requests' => (int)$matched[0][3],
+                'reading' => (int)$matched[0][4],
+                'writing' => (int)$matched[0][5],
+                'waiting' => (int)$matched[0][6]
+            ];
+        }
+
+        return null;
+    }
+
+    /**
      * 从字符串中提取JSON数据
      *
      * @param string $string

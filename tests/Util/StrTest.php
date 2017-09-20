@@ -41,4 +41,16 @@ class StrTest extends TestCase
             $this->assertEquals($result, $domain);
         }
     }
+
+    public function testResolveNginxStatus()
+    {
+        $str = <<<EOD
+Active connections: 100
+server accepts handled requests
+ 10000 20000 30000
+Reading: 0 Writing: 1 Waiting: 0
+EOD;
+        $result = Str::resolveNginxStatus($str);
+        $this->assertCount(7, $result);
+    }
 }
