@@ -15,7 +15,7 @@ class Str
     /**
      * 駝峰式字符串轉下劃線式
      *
-     * @param string $str
+     * @param string  $str
      * @param boolean $replace
      *
      * @return string
@@ -24,6 +24,7 @@ class Str
     {
         $str = preg_replace('/(?<=\w)([A-Z])(?=[a-z]+)/', "_$1", trim($str));
         $str = $replace ? str_replace(" ", "_", $str) : $str;
+
         return strtolower($str);
     }
 
@@ -31,7 +32,7 @@ class Str
      * 下劃線式字符串轉駝峰式
      *
      * @param string $str
-     * @param bool $capitalise_first_char 首字母是否大寫
+     * @param bool   $capitalise_first_char 首字母是否大寫
      *
      * @return mixed
      */
@@ -42,6 +43,7 @@ class Str
         }
         $func = $space ? 'return " " . strtoupper($c[1]);' : 'return strtoupper($c[1]);';
         $callback = create_function('$c', $func);
+
         return preg_replace_callback('/_([a-z])/', $callback, $str);
     }
 
@@ -61,6 +63,7 @@ class Str
             $strlen += 60;
         }
         $str = str_shuffle($str);
+
         return substr($str, 0, $length);
     }
 
@@ -68,7 +71,7 @@ class Str
      * 产生唯一字符串
      *
      * @param string $prefix
-     * @param int $length
+     * @param int    $length
      *
      * @return string
      */
@@ -118,6 +121,7 @@ class Str
                 }
             }
         }
+
         return true;
     }
 
@@ -171,9 +175,28 @@ class Str
     }
 
     /**
+     * 提取email域名
+     *
+     * @param string $email
+     *
+     * @return string|null
+     */
+    static public function extractDomainFromEmail($email)
+    {
+        if (Validator::validEmail($email)) {
+            $domain = array_pop(explode('@', $email));
+
+            return $domain;
+        }
+
+        return null;
+    }
+
+    /**
      * 从字符串中提取JSON数据
      *
      * @param string $string
+     *
      * @return array
      */
     static public function extractJsonFromString($string)
@@ -190,6 +213,7 @@ class Str
 /x
 ';
         preg_match_all($pattern, $string, $matches);
+
         return $matches[0];
     }
 }

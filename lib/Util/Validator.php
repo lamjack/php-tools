@@ -42,8 +42,8 @@ class Validator
      * 密码格式验证
      *
      * @param string $password
-     * @param int $minLength
-     * @param int $maxLength
+     * @param int    $minLength
+     * @param int    $maxLength
      *
      * @return bool
      */
@@ -56,6 +56,7 @@ class Validator
         if ($length < $minLength || $length > $maxLength) {
             return false;
         }
+
         return true;
     }
 
@@ -63,6 +64,7 @@ class Validator
      * 邮箱地址格式验证
      *
      * @param string $email
+     *
      * @return bool
      */
     static public function validEmail($email)
@@ -97,6 +99,7 @@ class Validator
                 $isValid = false;
             }
         }
+
         return $isValid;
     }
 }
