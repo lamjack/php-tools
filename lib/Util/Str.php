@@ -184,7 +184,8 @@ class Str
     static public function extractDomainFromEmail($email)
     {
         if (Validator::validEmail($email)) {
-            $domain = array_pop(explode('@', $email));
+            $splitArr = explode('@', $email);
+            $domain = array_pop($splitArr);
 
             return $domain;
         }
